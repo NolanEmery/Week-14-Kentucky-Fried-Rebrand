@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>KFC | Feel Good, Full Stop.</title>
+  <link rel="preconnect" href="https://images.unsplash.com" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet" />
+  <style>
+    :root { --red:#e4002b; --ink:#1d1c1b; --cream:#f6f4ef; --line:#d7d4cc; --sage:#dce4d5; }
+    * { box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body { margin:0; color:var(--ink); background:#edebe6; font-family:"DM Sans",sans-serif; }
+    .marble { background-color:#f7f6f2; background-image:linear-gradient(116deg,transparent 0 24%,rgba(120,120,115,.09) 24.2%,transparent 24.5% 47%,rgba(157,151,144,.08) 47.3%,transparent 47.6% 76%,rgba(130,130,128,.07) 76.3%,transparent 76.6%),linear-gradient(66deg,transparent 0 34%,rgba(190,188,182,.13) 34.2%,transparent 34.5% 63%,rgba(150,150,145,.08) 63.3%,transparent 63.6%); }
+    .page { min-height:100vh; display:grid; grid-template-columns:320px 1fr; }
+    aside { height:100vh; position:sticky; top:0; overflow:hidden; border-right:1px solid var(--line); background:rgba(250,249,245,.9); display:flex; flex-direction:column; }
+    .brand { padding:26px 28px 21px; border-bottom:1px solid var(--line); display:flex; justify-content:space-between; align-items:center; }
+    .brandmark { display:inline-flex; width:48px; height:48px; background:var(--red); color:white; font-weight:700; border-radius:50%; align-items:center; justify-content:center; font-size:12px; letter-spacing:-.7px; }
+    .menu-label,.eyebrow { font:500 10px "DM Mono",monospace; letter-spacing:1.3px; text-transform:uppercase; }
+    .menu-label { padding:20px 28px 12px; color:#696762; }
+    .menu { overflow-y:auto; padding:0 15px 18px 20px; scrollbar-width:thin; scrollbar-color:#aaa #eee; }
+    .menu::-webkit-scrollbar { width:5px; }.menu::-webkit-scrollbar-thumb { background:#aaa; border-radius:5px; }
+    .meal { width:100%; border:0; border-top:1px solid transparent; border-bottom:1px solid var(--line); background:transparent; cursor:pointer; padding:13px 8px; display:grid; grid-template-columns:66px 1fr; gap:12px; text-align:left; transition:.2s; }
+    .meal:hover,.meal.active { background:#fff; padding-left:12px; border-radius:3px; }.meal.active { box-shadow:0 7px 20px rgba(20,20,15,.07); border-bottom-color:transparent; }
+    .meal img { width:66px; height:66px; object-fit:cover; border-radius:50%; }.meal h3 { font-size:13px; line-height:1.12; margin:3px 0 6px; letter-spacing:-.2px; }.meal p { color:#77736d; font:10px "DM Mono",monospace; margin:0; }.pill { display:inline-block; margin-top:12px; background:var(--sage); color:#3c4a38; padding:5px 8px; border-radius:20px; font:10px "DM Mono",monospace; }
+    main { overflow:hidden; }.topbar { height:90px; padding:0 5.7vw; display:flex; align-items:center; justify-content:space-between; border-bottom:1px solid rgba(215,212,204,.8); }.nav { display:flex; gap:30px; font-size:12px; font-weight:600; }.nav a { color:inherit; text-decoration:none; }.order { background:var(--red); color:white; border:0; border-radius:2px; padding:13px 19px; font:600 11px "DM Mono",monospace; letter-spacing:.4px; cursor:pointer; }
+    .hero { position:relative; min-height:622px; padding:76px 5.7vw 55px; display:grid; grid-template-columns:minmax(290px, .92fr) minmax(350px, 1.08fr); gap:40px; align-items:center; }
+    .hero-copy { position:relative; z-index:1; }.eyebrow { color:var(--red); }.hero h1 { font:600 clamp(47px,6.4vw,88px)/.94 "Playfair Display",serif; letter-spacing:-4px; margin:17px 0 22px; max-width:650px; }.hero h1 em { color:var(--red); }.hero-copy > p { max-width:430px; font-size:16px; line-height:1.55; color:#5e5a54; margin:0 0 29px; }.proof { display:flex; align-items:center; gap:12px; font-size:12px; font-weight:600; }.proof span { width:26px; height:26px; border-radius:50%; display:grid; place-items:center; color:white; background:#5d7457; }
+    .hero-image { height:min(470px, 48vw); min-height:370px; position:relative; }.photo-frame { position:absolute; inset:0 0 0 10%; overflow:hidden; border-radius:220px 220px 6px 6px; background:#ddd; box-shadow:17px 18px 0 var(--red); }.photo-frame img { width:100%; height:100%; object-fit:cover; }.photo-note { position:absolute; left:-10px; bottom:21px; background:#fffdf9; padding:14px 16px; box-shadow:0 8px 25px rgba(0,0,0,.1); font-size:11px; line-height:1.35; transform:rotate(-3deg); }.photo-note b { display:block; color:var(--red); font:500 10px "DM Mono",monospace; letter-spacing:.7px; margin-bottom:3px; }
+    .trust { padding:0 5.7vw 58px; display:grid; grid-template-columns:1.15fr 1fr 1fr; border-top:1px solid var(--line); }.trust div { padding:25px 23px 25px 0; border-right:1px solid var(--line); }.trust div+div { padding-left:23px; }.trust div:last-child { border:0; }.trust b { font:600 13px "DM Sans",sans-serif; display:block; margin-bottom:6px; }.trust span { font-size:12px; color:#68645f; line-height:1.4; }
+    .statement { background:var(--ink); color:#f7f6f1; padding:75px 5.7vw; display:grid; grid-template-columns:1fr 1.5fr; gap:55px; }.statement h2 { font:600 clamp(33px,4.1vw,57px)/1 "Playfair Display",serif; letter-spacing:-2px; margin:12px 0 0; }.statement p { font-size:18px; color:#c9c5bb; line-height:1.6; max-width:600px; margin:11px 0 0; }.statement .eyebrow { color:#f4ba24; }.red-line { height:3px; width:44px; background:var(--red); margin-top:34px; }
+    footer { padding:28px 5.7vw; display:flex; justify-content:space-between; align-items:center; background:#f4f1ea; font:10px "DM Mono",monospace; color:#726f69; }.footer-kfc { font:700 16px "DM Sans",sans-serif; color:var(--red); letter-spacing:-1px; }
+    @media(max-width:780px){ .page { display:block; }.topbar { height:67px; }.nav { display:none; } aside { position:relative; height:auto; border-right:0; border-bottom:1px solid var(--line); }.brand { padding:13px 20px; }.brandmark { width:38px; height:38px; }.menu-label { padding:13px 20px 8px; }.menu { display:flex; overflow-x:auto; overflow-y:hidden; padding:0 15px 12px; gap:9px; }.meal { flex:0 0 174px; border:1px solid var(--line); padding:8px; grid-template-columns:49px 1fr; border-radius:3px; }.meal img { width:49px;height:49px; }.meal h3 { font-size:11px; margin:1px 0 3px; }.pill { display:none; }.hero { min-height:auto; grid-template-columns:1fr; padding:52px 7vw 50px; gap:28px; }.hero h1 { letter-spacing:-2.5px; }.hero-image { height:400px; min-height:0; }.photo-frame { left:5%; }.trust { padding:0 7vw 30px; grid-template-columns:1fr; }.trust div,.trust div+div { border-right:0; border-bottom:1px solid var(--line); padding:17px 0; }.statement { padding:54px 7vw; grid-template-columns:1fr; gap:20px; }.statement p { font-size:16px; } footer { padding:23px 7vw; }.topbar { padding:0 7vw; } }
+  </style>
+</head>
+<body class="marble">
+  <div class="page">
+    <aside>
+      <div class="brand"><span class="brandmark">KFC</span><span class="menu-label" style="padding:0">A fresh take</span></div>
+      <div class="menu-label">Explore the lighter side ↓</div>
+      <div class="menu" id="menu">
+        <button class="meal active" data-title="The Lighter Original Bowl" data-image="https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=1200&q=85" data-note="Grilled chicken, crisp greens & bright, fresh flavour."><img src="https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=180&q=80" alt="Chicken salad bowl"><span><h3>The Lighter Original Bowl</h3><p>Grilled chicken salad</p><i class="pill">NEW</i></span></button>
+        <button class="meal" data-title="Air-Fried Tender Basket" data-image="https://images.unsplash.com/photo-1562967914-608f82629710?auto=format&fit=crop&w=1200&q=85" data-note="Big crunch. Less heaviness. Nothing to hide."><img src="https://images.unsplash.com/photo-1562967914-608f82629710?auto=format&fit=crop&w=180&q=80" alt="Crispy chicken tenders"><span><h3>Air-Fried Tender Basket</h3><p>Crispy chicken tenders</p></span></button>
+        <button class="meal" data-title="Colonel's Garden Wrap" data-image="https://images.unsplash.com/photo-1626700051175-6818013e1d4f?auto=format&fit=crop&w=1200&q=85" data-note="Herb-grilled chicken, lettuce and tomato, all wrapped up."><img src="https://images.unsplash.com/photo-1626700051175-6818013e1d4f?auto=format&fit=crop&w=180&q=80" alt="Chicken and salad wrap"><span><h3>Colonel's Garden Wrap</h3><p>Chicken · lettuce · tomato</p></span></button>
+        <button class="meal" data-title="Herb & Spice Salad Plate" data-image="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=1200&q=85" data-note="Seasoned chicken strips atop a plate full of colour."><img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=180&q=80" alt="Fresh salad plate"><span><h3>Herb & Spice Salad Plate</h3><p>Chicken strips & salad</p></span></button>
+        <button class="meal" data-title="The Smart Bucket" data-image="https://images.unsplash.com/photo-1569058242253-92a9c755a0ec?auto=format&fit=crop&w=1200&q=85" data-note="Share grilled and air-fried chicken made with the flavour you expect."><img src="https://images.unsplash.com/photo-1569058242253-92a9c755a0ec?auto=format&fit=crop&w=180&q=80" alt="Chicken bucket"><span><h3>The Smart Bucket</h3><p>Grilled & air-fried chicken</p></span></button>
+      </div>
+    </aside>
+    <main>
+      <header class="topbar"><div class="nav"><a href="#menu">Menu</a><a href="#why">Why the change</a><a href="#story">Our approach</a></div><button class="order">FIND A KFC NEAR YOU →</button></header>
+      <section class="hero marble" id="story">
+        <div class="hero-copy"><div class="eyebrow">KFC, reimagined / 2025</div><h1>Same <em>crave.</em><br>Clearer choice.</h1><p>For anyone who thought they knew KFC: meet chicken that’s grilled, air-fried, and served with more of what feels good.</p><div class="proof"><span>✓</span> Made for the flavour sceptics.</div></div>
+        <div class="hero-image"><div class="photo-frame"><img id="heroImage" src="https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=1200&q=85" alt="The Lighter Original Bowl"></div><div class="photo-note"><b id="noteTitle">THE LIGHTER ORIGINAL BOWL</b><span id="noteText">Grilled chicken, crisp greens & bright, fresh flavour.</span></div></div>
+      </section>
+      <section class="trust" id="why"><div><b>Grilled, not guessed.</b><span>Chicken prepared over open heat for a more honest kind of flavour.</span></div><div><b>Air-fried crunch.</b><span>The crispy texture you want, with a lighter approach to cooking.</span></div><div><b>Nothing dressed up.</b><span>Clear ingredients. Big flavour. No need for a sales pitch.</span></div></section>
+      <section class="statement"><div><div class="eyebrow">Why we changed</div><h2>Less “fast food.”<br>More food, fast.</h2><div class="red-line"></div></div><p>We heard the raised eyebrows. So we didn’t just add a salad and call it a day. We revisited the whole plate—starting with the chicken—and kept the part that matters: unmistakably KFC flavour.</p></section>
+      <footer><span class="footer-kfc">KFC</span><span>GRILLED. AIR-FRIED. UNAPOLOGETICALLY FLAVOURFUL.</span><span>© 2025 CONCEPT</span></footer>
+    </main>
+  </div>
+  <script>
+    const meals = document.querySelectorAll('.meal'); const hero = document.getElementById('heroImage');
+    meals.forEach(meal => meal.addEventListener('click', () => { meals.forEach(x => x.classList.remove('active')); meal.classList.add('active'); hero.style.opacity = 0; setTimeout(() => { hero.src=meal.dataset.image; hero.alt=meal.dataset.title; document.getElementById('noteTitle').textContent=meal.dataset.title.toUpperCase(); document.getElementById('noteText').textContent=meal.dataset.note; hero.style.opacity=1; },150); }));
+  </script>
+</body>
+</html>
