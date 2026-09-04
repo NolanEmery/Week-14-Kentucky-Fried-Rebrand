@@ -23,4 +23,6 @@ Test It:
 No changes necessary.
 
 Expand It:
+
+How did you rework the site into a scrollytelling journey through KFC's history?
 Introduce a story with five eras: 1952: The Roadside Kitchen, 1960s-70s: The Franchise Boom, 1990s-2000s: The Bucket Culture, The Slump, and Today: New KFC. Make the story scrollable. Include blocks of text and images on the side for each era. Each era has a photo in the background. Put a button on the bottom right of each era to skip each era.
